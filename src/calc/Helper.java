@@ -1,5 +1,7 @@
 package calc;
 
+import java.util.Arrays;
+
 public  class Helper {
 
 
@@ -16,6 +18,11 @@ public  class Helper {
     }
 
     public static Double clasification(double [] values,double [] inputs){
+        System.out.println("Ws:");
+        System.out.println(Arrays.toString(values));
+
+        System.out.println(Arrays.toString(inputs));
+
         double result = values[0];
         for (int i = 1; i < values.length; i++) {
             result += values[i] * inputs[i-1];

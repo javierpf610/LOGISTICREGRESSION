@@ -12,7 +12,7 @@ public class MyAgent extends jade.core.Agent {
         myGUI.showGui();
     }
 
-    public void executeAgentSLR(String entrada) {
+    public void executeAgentSLR(final String entrada) {
         addBehaviour(new OneShotBehaviour() {
             public void action() {
 
@@ -30,9 +30,7 @@ public class MyAgent extends jade.core.Agent {
                 for (int i = 0; i < userRawValues.length; i++) {
                     inputs[i] = Double.parseDouble(userRawValues[i]);
                 }
-                System.out.println("Ws");
-                dataset.print(slr.calculate());
-                System.out.println(" ");
+
                 System.out.println(Helper.clasification(slr.calculate(),inputs));
 
 
@@ -41,7 +39,7 @@ public class MyAgent extends jade.core.Agent {
         } );
 
     }
-    public void executeAgentMLR(String entrada) {
+    public void executeAgentMLR(final String entrada) {
         addBehaviour(new OneShotBehaviour() {
             public void action() {
                 String pathMultiple="src\\data\\datasetMultiple.csv";
@@ -57,9 +55,6 @@ public class MyAgent extends jade.core.Agent {
                 for (int i = 0; i < userRawValues.length; i++) {
                     inputs[i] = Double.parseDouble(userRawValues[i]);
                 }
-                System.out.println("Ws");
-                dataset.print(mlr.calculate());
-                System.out.println(" ");
                 System.out.println(Helper.clasification(mlr.calculate(),inputs));
             }
         } );

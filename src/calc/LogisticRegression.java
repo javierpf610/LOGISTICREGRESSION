@@ -8,8 +8,8 @@ public class LogisticRegression {
     private double [][] x;
     private double [][] y;
     double[] Ws;
-    private double alpha = 0.001;
-    private int interation=80000;
+    private double alpha = 0.01;
+    private int interation=8000;
 
 
     public LogisticRegression(dataset data) {
