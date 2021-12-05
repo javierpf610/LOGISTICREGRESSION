@@ -1,26 +1,24 @@
 package calc;
 
-import data.dataset;
-import calc.Helper;
+import data.Dataset;
 
 public class LogisticRegression {
-    dataset data;
+    Dataset data;
     private double [][] x;
     private double [][] y;
     double[] Ws;
-    private double alpha = 0.01;
+    //Multiple
+   // private double alpha = 0.0005;
+    //private int interation=10000;
+    //
+    private double alpha = 0.0005;
     private int interation=8000;
 
-
-    public LogisticRegression(dataset data) {
+    public LogisticRegression(Dataset data) {
         this.data = data;
         x=data.getX();
         y=data.getY();
         Ws=data.getWs();
-    }
-
-    public double[] getWs() {
-        return Ws;
     }
 
     public double[] calculate() {
@@ -30,25 +28,36 @@ public class LogisticRegression {
             double[] WsNew = new double[Ws.length];
             double sigma = 0;
 
-            for (int j = 0; j < x.length; j++) {
-                for (int k = 0; k < x[0].length; k++) {
+            for (int j = 0; j < x[0].length; j++) {
+                for (int k = 0; k < x.length; k++) {
 
-                    sigma += ((1 / ( 1 + Math.exp( - Helper.sigmoid(k,Ws,x))))- y[k][0] ) * x[j][k];
-
+                    sigma += ((1 / ( 1 + Math.exp( - Helper.sigmoid(k,Ws,x))))- y[k][0] ) * x[k][j];
+                    //sigma += ((1 / ( 1 + (Math.exp( - sigmoid(k)))))- y[k][0] ) * x[k][j];
 
                 }
 
                 WsNew[j] = Ws[j] - (alpha * sigma);
                 sigma = 0;
-
-
+                //System.arraycopy(WsNew, 0, Ws, 0, x[0].length);
             }
             System.arraycopy(WsNew, 0, Ws, 0, x[0].length);
+
+
         }
         System.arraycopy(Ws, 0, ansClean, 0, ansClean.length);
         return ansClean;
     }
+    public  Double sigmoid(int position) {
+        double result = Ws[0];
 
+        for (int i = 1; i < x[0].length; i++) {
+
+            result += Ws[i] * x[position][i];
+
+        }
+
+        return result;
+    }
 
 
 }

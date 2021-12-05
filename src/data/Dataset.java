@@ -5,13 +5,13 @@ import java.io.FileReader;
 import java.util.List;
 
 
-public class dataset {
+public class Dataset {
 
 private double [][] data;
 String path;
 
 
-    public dataset(String path) {
+    public Dataset(String path) {
         this.path = path;
         readData();
     }
@@ -37,7 +37,7 @@ String path;
                 for (int j=0;j<pivotForIndex;j++){
                     String[] row = csvData.get(i);
                     data[i][j] = Double.parseDouble(row[j]);
-                    data[i][j] = Double.parseDouble(row[j]);
+
                 }
 
             }
@@ -73,7 +73,12 @@ String path;
     }
 
     public double [] getWs(){
-        return new double[getX().length];
+        double []ws =new double[getX()[0].length];
+        for (int i = 0; i <ws.length ; i++) {
+            ws[i] = 0.0;
+        }
+        return ws;
+
     }
 
     public static void print(double [][] data){
