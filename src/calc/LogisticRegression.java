@@ -8,12 +8,14 @@ public class LogisticRegression {
     private double [][] y;
     double[] Ws;
     //Multiple
-   // private double alpha = 0.0005;
-    //private int interation=10000;
-    //
     private double alpha = 0.0005;
     private int interation=8000;
+    //
 
+    //Funciona para simple y multiple
+    /*private double alpha = 0.00001;
+    private int interation=100000;
+    */
     public LogisticRegression(Dataset data) {
         this.data = data;
         x=data.getX();
